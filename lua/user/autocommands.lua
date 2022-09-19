@@ -44,3 +44,19 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
     vim.highlight.on_yank { higroup = "Visual", timeout = 200 }
   end,
 })
+
+-- Colosrcheme
+vim.api.nvim_create_autocmd({ "Colorscheme" }, {
+  callback = function ()
+    vim.cmd "highlight Keyword gui=Italic"
+    vim.cmd "highlight Commnet gui=Italic"
+  end
+})
+
+-- Nvim Terminal 
+vim.api.nvim_create_autocmd({ "TermOpen" }, {
+  callback = function ()
+    vim.cmd "setlocal nonumber norelativenumber"
+  end
+})
+

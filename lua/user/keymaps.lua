@@ -53,11 +53,11 @@ keymap("v", ">", ">gv", opts)
 -- Plugins --
 
 -- NvimTree
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 
@@ -78,3 +78,13 @@ keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
 keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
 keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
 keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
+
+-- Toggle Term
+keymap('n', '<M-BS>', '<cmd>ToggleTerm direction=float<CR>', opts)
+keymap('t', '<M-BS>', '<cmd>ToggleTerm direction=float<CR>', opts)
+
+keymap('n', '<M-=>', '<cmd>ToggleTerm direction=horizontal<CR>', opts)
+keymap('t', '<M-=>', '<cmd>ToggleTerm direction=horizontal<CR>', opts)
+
+keymap('n', '<M-`>', '<cmd>ToggleTerm direction=vertical<CR>', opts)
+keymap('t', '<M-`>', '<cmd>ToggleTerm direction=vertical<CR>', opts)

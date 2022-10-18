@@ -12,7 +12,7 @@ local servers = {
   "bashls",
   "jsonls",
   "yamlls",
-  "rust_analyzer",
+  "svls",
 }
 
 mason.setup()
@@ -42,3 +42,12 @@ for _, server in pairs(servers) do
 
   lspconfig[server].setup(opts)
 end
+
+local rust_status_ok, rt = pcall(require, "rust-tools")
+if not rust_status_ok then
+  return
+end
+
+rt.setup({
+  server = opts,
+})

@@ -86,5 +86,5 @@ keymap('t', '<M-BS>', '<cmd>ToggleTerm direction=float<CR>', opts)
 keymap('n', '<M-=>', '<cmd>ToggleTerm direction=horizontal<CR>', opts)
 keymap('t', '<M-=>', '<cmd>ToggleTerm direction=horizontal<CR>', opts)
 
-keymap('n', '<M-`>', '<cmd>ToggleTerm direction=vertical<CR>', opts)
-keymap('t', '<M-`>', '<cmd>ToggleTerm direction=vertical<CR>', opts)
+keymap('n', '<M-->', '<cmd>ToggleTerm direction=vertical<CR>', opts)
+keymap('t', '<M-->', '<cmd>ToggleTerm direction=vertical<CR>', opts)

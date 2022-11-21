@@ -60,6 +60,8 @@ return packer.startup(function(use)
   -- Colorschemes
   use { "folke/tokyonight.nvim"}
   use "savq/melange"
+  use { "catppuccin/nvim", as = "catppuccin" }
+
   -- cmp plugins
   use { "hrsh7th/nvim-cmp"} -- The completion plugin
   use { "hrsh7th/cmp-buffer"} -- buffer completions
@@ -67,6 +69,7 @@ return packer.startup(function(use)
   use { "saadparwaiz1/cmp_luasnip"} -- snippet completions
   use { "hrsh7th/cmp-nvim-lsp"}
   use { "hrsh7th/cmp-nvim-lua"}
+  use { "onsails/lspkind.nvim" }
 
   -- snippets
   use { "L3MON4D3/LuaSnip"} --snippet engine
@@ -100,7 +103,11 @@ return packer.startup(function(use)
   use { "ravenxrz/DAPInstall.nvim"}
 
   -- Motion
-  use { "ggandor/lightspeed.nvim" }
+  --[[ use { "ggandor/lightspeed.nvim" } ]]
+
+  --
+  use { 'fgheng/winbar.nvim' }
+  use { "daskol/nvim-bnf" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

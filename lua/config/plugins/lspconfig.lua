@@ -27,9 +27,18 @@ return {
           },
         },
       },
+      "hrsh7th/nvim-cmp",
     },
     config = function()
-      require("lspconfig").lua_ls.setup {}
+      local lspconfig = require("lspconfig")
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local servers = { "lua_ls" }
+
+      for _, server in ipairs(servers) do
+        lspconfig[server].setup {
+          capabilities = capabilities
+        }
+      end
 
       vim.keymap.set("n", "<space>lf", function() vim.lsp.buf.format() end)
     end,

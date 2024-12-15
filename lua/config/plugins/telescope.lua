@@ -13,8 +13,14 @@ return {
           find_files = {
             theme = "ivy"
           }
+        },
+
+        extensions = {
+          fzf = {}
         }
       }
+
+      require('telescope').load_extension('fzf')
 
       vim.keymap.set("n", "<space>ff", require('telescope.builtin').find_files)
       vim.keymap.set("n", "<space>fg", require('telescope.builtin').live_grep)

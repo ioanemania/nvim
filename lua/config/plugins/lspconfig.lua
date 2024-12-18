@@ -2,14 +2,14 @@ return {
   {
     "williamboman/mason.nvim",
     config = function()
-      require("mason").setup {}
+      require("mason").setup()
     end
   },
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup {
-        ensure_installed = { "lua_ls" }
+        ensure_installed = { "lua_ls", "pyright" }
       }
     end
   },
@@ -27,16 +27,15 @@ return {
           },
         },
       },
-      "hrsh7th/nvim-cmp",
+      'saghen/blink.cmp',
     },
     config = function()
       local lspconfig = require("lspconfig")
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      local servers = { "lua_ls" }
+      local servers = { "lua_ls", "pyright" }
 
       for _, server in ipairs(servers) do
         lspconfig[server].setup {
-          capabilities = capabilities
+            capabilities = require('blink.cmp').get_lsp_capabilities()
         }
       end
 

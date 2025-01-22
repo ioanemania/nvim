@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup {
-        ensure_installed = { "lua_ls", "pyright" }
+        ensure_installed = { "lua_ls", "pyright", "svelte" }
       }
     end
   },
@@ -31,7 +31,7 @@ return {
     },
     config = function()
       local lspconfig = require("lspconfig")
-      local servers = { "lua_ls", "pyright" }
+      local servers = { "lua_ls", "pyright", "svelte" }
 
       for _, server in ipairs(servers) do
         lspconfig[server].setup {

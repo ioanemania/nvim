@@ -26,16 +26,17 @@ require("lazy").setup({
   spec = {
     { import = "config.plugins" },
     {
-      'sainnhe/everforest',
-      lazy = false,
+      "catppuccin/nvim",
+      name = "catppuccin",
       priority = 1000,
       config = function()
-        -- Optionally configure and load the colorscheme
-        -- directly inside the plugin declaration.
-        vim.g.everforest_enable_italic = true
-        vim.cmd.colorscheme('everforest')
+        require("catppuccin").setup({
+            flavour = "macchiato",
+        })
+
+        vim.cmd.colorscheme('catppuccin')
       end
-    }
+    },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.

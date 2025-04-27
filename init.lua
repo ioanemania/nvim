@@ -6,9 +6,16 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-vim.keymap.set("n", "<space><space>x", "<cmd>source %<cr>")
-vim.keymap.set("n", "<space>x", ":.lua<cr>")
-vim.keymap.set("v", "<space>x", ":lua<cr>")
+local map = vim.keymap.set
+map("n", "<space><space>x", "<cmd>source %<cr>")
+map("n", "<space>x", ":.lua<cr>")
+map("v", "<space>x", ":lua<cr>")
+
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
+
+map("n", "<C-n>", "<cmd>cnext<cr>")
+map("n", "<C-p>", "<cmd>cprev<cr>")
 
 -- Highlight when yanking
 vim.api.nvim_create_autocmd('TextYankPost', {

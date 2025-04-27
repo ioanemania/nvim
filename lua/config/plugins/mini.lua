@@ -11,12 +11,14 @@ return {
       require('mini.surround').setup {}
       require('mini.trailspace').setup {}
       require('mini.comment').setup {}
+      require('mini.bufremove').setup {}
 
       require('mini.diff').setup {
         view = { style = 'sign' }
       }
 
       vim.keymap.set("n", "<space>go", ":lua MiniDiff.toggle_overlay()<cr>")
+      vim.keymap.set("n", "<space>bd", ":lua MiniBufremove.delete()<cr>")
     end
   },
 }

@@ -1,3 +1,5 @@
+local lsp_servers = { "lua_ls", "svelte", "glslls", "gopls", "rust_analyzer", "jedi_language_server" }
+
 return {
   {
     "williamboman/mason.nvim",
@@ -9,7 +11,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup {
-        ensure_installed = { "lua_ls", "pyright", "svelte", "glslls", "zls" }
+        ensure_installed = lsp_servers
       }
     end
   },
@@ -31,15 +33,20 @@ return {
     },
     config = function()
       local lspconfig = require("lspconfig")
-      local servers = { "lua_ls", "pyright", "svelte", "glslls", "zls" }
+      local servers = lsp_servers
 
       for _, server in ipairs(servers) do
         lspconfig[server].setup {
-            capabilities = require('blink.cmp').get_lsp_capabilities()
+          capabilities = require('blink.cmp').get_lsp_capabilities()
         }
       end
 
-      vim.keymap.set("n", "<space>lf", function() vim.lsp.buf.format() end)
+      local map = vim.keymap.set
+
+      map("n", "<space>lf", function() vim.lsp.buf.format() end)
+      map("n", "gd", vim.lsp.buf.definition)
+      map("n", "gr", vim.lsp.buf.references)
+      map("n", "<space>fs", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>")
     end,
   },
 }

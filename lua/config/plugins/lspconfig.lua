@@ -46,7 +46,9 @@ return {
       map("n", "<space>lf", function() vim.lsp.buf.format() end)
       map("n", "gd", vim.lsp.buf.definition)
       map("n", "gr", vim.lsp.buf.references)
-      map("n", "<space>fs", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>")
+      map("n", "<space>fs", "<cmd>Telescope lsp_workspace_symbols<cr>")
+      map("n", "<space>df", vim.diagnostic.open_float)
+      map("n", "<space>dq", vim.diagnostic.setqflist)
     end,
   },
 }

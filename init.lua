@@ -5,6 +5,9 @@ vim.opt.tabstop = 4
 vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.fillchars = vim.opt.fillchars + 'diff:╱'
+
+
 
 local map = vim.keymap.set
 map("n", "<space><space>x", "<cmd>source %<cr>")

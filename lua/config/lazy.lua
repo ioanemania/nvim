@@ -26,17 +26,14 @@ require("lazy").setup({
   spec = {
     { import = "config.plugins" },
     {
-      "catppuccin/nvim",
-      name = "catppuccin",
-      lazy = false,
-      priority = 1000,
+      'projekt0n/github-nvim-theme',
+      name = 'github-theme',
+      lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+      priority = 1000, -- make sure to load this before all the other start plugins
       config = function()
-        require("catppuccin").setup {
-          flavour = "frappe",
-        }
-
-        vim.cmd.colorscheme("catppuccin")
-      end
+        require('github-theme').setup({})
+        vim.cmd('colorscheme github_dark')
+      end,
     },
   },
   -- Configure any other settings here. See the documentation for more details.

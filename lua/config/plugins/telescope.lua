@@ -5,15 +5,27 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      'MunifTanjim/nui.nvim'
     },
 
     config = function()
+      local themes = require('telescope.themes')
+      local actions = require('telescope.actions')
       require('telescope').setup {
-        pickers = {
-          find_files = {
-            theme = "ivy"
-          }
-        },
+        defaults = themes.get_ivy({
+          mappings = {
+            i = {
+              ["<C-j>"] = {
+                actions.move_selection_next, type = "action",
+                opts = { nowait = true, silent = true }
+              },
+              ["<C-k>"] = {
+                actions.move_selection_previous, type = "action",
+                opts = { nowait = true, silent = true }
+              },
+            }
+          },
+        }),
 
         extensions = {
           fzf = {}

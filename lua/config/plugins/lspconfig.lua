@@ -30,6 +30,7 @@ return {
         },
       },
       'saghen/blink.cmp',
+      'nvim-telescope/telescope.nvim',
     },
     config = function()
       local lspconfig = require("lspconfig")
@@ -41,13 +42,16 @@ return {
         }
       end
 
+      local telescope_builtin = require("telescope.builtin")
+
       local map = vim.keymap.set
 
       map("n", "<space>lf", function() vim.lsp.buf.format() end)
-      map("n", "gd", vim.lsp.buf.definition)
-      map("n", "gr", vim.lsp.buf.references)
-      map("n", "<space>fs", "<cmd>Telescope lsp_workspace_symbols<cr>")
+      map("n", "gd", telescope_builtin.lsp_definitions)
+      map("n", "gr", telescope_builtin.lsp_references)
+      map("n", "<space>fs", telescope_builtin.lsp_workspace_symbols)
       map("n", "<space>df", vim.diagnostic.open_float)
+      map("n", "<space>dl", telescope_builtin.diagnostics)
       map("n", "<space>dq", vim.diagnostic.setqflist)
     end,
   },

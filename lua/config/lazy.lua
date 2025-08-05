@@ -32,9 +32,18 @@ require("lazy").setup({
       priority = 1000, -- make sure to load this before all the other start plugins
       config = function()
         require('github-theme').setup({})
-        vim.cmd('colorscheme github_dark')
+        -- vim.cmd('colorscheme github_dark_dimmed')
       end,
     },
+
+    {
+      "slugbyte/lackluster.nvim",
+      lazy = false,
+      priority = 1000,
+      init = function()
+        vim.cmd.colorscheme("lackluster-mint")
+      end,
+    }
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.

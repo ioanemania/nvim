@@ -42,14 +42,20 @@ return {
         }
       end
 
+      lspconfig["gdscript"].setup({
+        name = "godot",
+        cmd = vim.lsp.rpc.connect("127.0.0.1", 6005)
+      })
+
       local telescope_builtin = require("telescope.builtin")
 
       local map = vim.keymap.set
 
       map("n", "<space>lf", function() vim.lsp.buf.format() end)
-      map("n", "gd", telescope_builtin.lsp_definitions)
-      map("n", "gr", telescope_builtin.lsp_references)
-      map("n", "<space>fs", telescope_builtin.lsp_workspace_symbols)
+      map("n", "gd", vim.lsp.buf.definition)
+      map("n", "gD", vim.lsp.buf.implementation)
+      map("n", "gr", vim.lsp.buf.references)
+      map("n", "<space>fs", telescope_builtin.lsp_dynamic_workspace_symbols)
       map("n", "<space>df", vim.diagnostic.open_float)
       map("n", "<space>dl", telescope_builtin.diagnostics)
       map("n", "<space>dq", vim.diagnostic.setqflist)

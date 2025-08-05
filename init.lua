@@ -6,8 +6,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.fillchars = vim.opt.fillchars + 'diff:╱'
-
-
+vim.opt.cursorline = true
 
 local map = vim.keymap.set
 map("n", "<space><space>x", "<cmd>source %<cr>")

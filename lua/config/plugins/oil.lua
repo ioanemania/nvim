@@ -10,11 +10,31 @@ return {
     -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
     lazy = false,
 
-    config = function ()
+    config = function()
       local oil = require("oil")
-      oil.setup()
 
-      vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
+      oil.setup({
+        columns = { "icon" },
+        float = {
+          padding = 5,
+          preview_split = "right",
+        },
+        keymaps = {
+          ["gd"] = {
+            desc = "Toggle file detail view",
+            callback = function()
+              detail = not detail
+              if detail then
+                require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
+              else
+                require("oil").set_columns({ "icon" })
+              end
+            end,
+          },
+        }
+      })
+
+      vim.keymap.set("n", "-", oil.open, { desc = "Open parent directory" })
     end
   }
 }

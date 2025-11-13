@@ -1,4 +1,4 @@
-local lsp_servers = { "lua_ls", "svelte", "glslls", "gopls", "rust_analyzer", "pyrefly", "ts_ls", "tinymist", "clangd" }
+local lsp_servers = { "lua_ls", "svelte", "glslls", "gopls", "rust_analyzer", "ts_ls", "tinymist", "clangd", "zls"}
 
 return {
   {
@@ -33,18 +33,24 @@ return {
       'nvim-telescope/telescope.nvim',
     },
     config = function()
-      local lspconfig = require("lspconfig")
+      local lspconfig = vim.lsp.config
       local servers = lsp_servers
 
       for _, server in ipairs(servers) do
-        lspconfig[server].setup {
+        lspconfig(server, {
           capabilities = require('blink.cmp').get_lsp_capabilities()
-        }
+        })
       end
 
-      lspconfig["gdscript"].setup({
+      lspconfig("gdscript", {
         name = "godot",
         cmd = vim.lsp.rpc.connect("127.0.0.1", 6005)
+      })
+
+      lspconfig("basedpyright", {
+        analysis = {
+          typeCheckingMode = "off"
+        }
       })
 
       local telescope_builtin = require("telescope.builtin")
@@ -53,9 +59,11 @@ return {
 
       map("n", "<space>lf", function() vim.lsp.buf.format() end)
       map("n", "gd", vim.lsp.buf.definition)
-      map("n", "gD", vim.lsp.buf.implementation)
+      map("n", "gD", vim.lsp.buf.declaration)
+      map("n", "<leader>gi", vim.lsp.buf.implementation)
       map("n", "gr", vim.lsp.buf.references)
       map("n", "<space>fs", telescope_builtin.lsp_dynamic_workspace_symbols)
+      map("n", "<space>fd", telescope_builtin.lsp_document_symbols)
       map("n", "<space>df", vim.diagnostic.open_float)
       map("n", "<space>dl", telescope_builtin.diagnostics)
       map("n", "<space>dq", vim.diagnostic.setqflist)

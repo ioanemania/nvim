@@ -30,20 +30,44 @@ require("lazy").setup({
       name = 'github-theme',
       lazy = false,    -- make sure we load this during startup if it is your main colorscheme
       priority = 1000, -- make sure to load this before all the other start plugins
-      config = function()
-        require('github-theme').setup({})
-        -- vim.cmd('colorscheme github_dark_dimmed')
-      end,
+      -- config = function()
+      --   require('github-theme').setup({})
+      --   vim.cmd("colorscheme github_dark_dimmed")
+      -- end,
     },
 
     {
-      "slugbyte/lackluster.nvim",
+      "folke/tokyonight.nvim",
       lazy = false,
       priority = 1000,
-      init = function()
-        vim.cmd.colorscheme("lackluster-mint")
-      end,
+      opts = {},
+      config = function()
+        -- vim.cmd("colorscheme tokyonight")
+      end
+    },
+
+    { "ellisonleao/gruvbox.nvim", priority = 1000 , config = function() vim.cmd("colorscheme gruvbox") end, opts = ...},
+
+    {
+      "wnkz/monoglow.nvim",
+      lazy = false,
+      priority = 1000,
+      opts = {},
     }
+
+    -- {
+    --   "f-person/auto-dark-mode.nvim",
+    --   opts = {
+    --     set_dark_mode = function()
+    --       vim.api.nvim_set_option_value("background", "dark", {})
+    --       vim.cmd("colorscheme github_dark_dimmed")
+    --     end,
+    --     set_light_mode = function()
+    --       vim.api.nvim_set_option_value("background", "light", {})
+    --       vim.cmd("colorscheme github_light")
+    --     end,
+    --   }
+    -- },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.

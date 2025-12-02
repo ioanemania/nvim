@@ -6,12 +6,11 @@ return {
     config = function()
       local bufferline = require('bufferline')
       bufferline.setup {
-          options = {
-              mode = "tabs", -- set to "tabs" to only show tabpages instead
-          }
+        options = {
+          separator_style = "slant"
+        }
       }
 
-      -- vim.keymap.set("n", "<leader>br", bufferline.rename_tab)
       vim.keymap.set("n", "gb", bufferline.pick)
     end
   }

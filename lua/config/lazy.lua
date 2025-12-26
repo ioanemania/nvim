@@ -46,7 +46,7 @@ require("lazy").setup({
       end
     },
 
-    { "ellisonleao/gruvbox.nvim", priority = 1000 , config = function() vim.cmd("colorscheme gruvbox") end, opts = ...},
+    { "ellisonleao/gruvbox.nvim" },
     { "savq/melange-nvim" },
 
     {
@@ -54,7 +54,17 @@ require("lazy").setup({
       lazy = false,
       priority = 1000,
       opts = {},
-    }
+    },
+
+    -- Lua
+    {
+      "f-person/auto-dark-mode.nvim",
+      opts = {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    },
 
     -- {
     --   "f-person/auto-dark-mode.nvim",
@@ -76,3 +86,5 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
+
+vim.cmd("colorscheme tokyonight")

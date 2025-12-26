@@ -1,4 +1,5 @@
-local lsp_servers = { "lua_ls", "svelte", "glslls", "gopls", "rust_analyzer", "ts_ls", "tinymist", "clangd", "zls"}
+local lsp_servers = { "lua_ls", "svelte", "glslls", "gopls", "rust_analyzer", "ts_ls", "tinymist", "clangd", "zls",
+  "ruff" }
 
 return {
   {
@@ -47,17 +48,42 @@ return {
         cmd = vim.lsp.rpc.connect("127.0.0.1", 6005)
       })
 
-      lspconfig("basedpyright", {
-        analysis = {
-          typeCheckingMode = "off"
-        }
+      lspconfig("pyright", {
+        settings = {
+          pyright = {
+            -- Using Ruff's import organizer
+            disableOrganizeImports = true,
+          },
+          python = {
+            analysis = {
+              -- Ignore all files for analysis to exclusively use Ruff for linting
+              ignore = { '*' },
+            },
+          },
+        },
+      })
+
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup('lsp_attach_disable_ruff_hover', { clear = true }),
+        callback = function(args)
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if client == nil then
+            return
+          end
+          if client.name == 'ruff' then
+            -- Disable hover in favor of Pyright
+            client.server_capabilities.hoverProvider = false
+          end
+        end,
+        desc = 'LSP: Disable hover capability from Ruff',
       })
 
       local telescope_builtin = require("telescope.builtin")
 
       local map = vim.keymap.set
 
-      map("n", "<space>lf", function() vim.lsp.buf.format() end)
+      map("n", "<space>lf", vim.lsp.buf.format)
+      map("v", "<space>lf", vim.lsp.buf.format)
       map("n", "gd", vim.lsp.buf.definition)
       map("n", "gD", vim.lsp.buf.declaration)
       map("n", "<leader>gi", vim.lsp.buf.implementation)

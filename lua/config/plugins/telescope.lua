@@ -15,7 +15,7 @@ return {
         defaults = themes.get_ivy({
 
           layout_config = {
-            height = 60,
+            height = 20,
           },
 
           mappings = {

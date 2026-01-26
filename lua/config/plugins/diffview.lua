@@ -7,7 +7,7 @@ return {
 
       require("diffview").setup({
         diff_binaries = false, -- Show diffs for binaries
-        enhanced_diff_hl = false, -- See |diffview-config-enhanced_diff_hl|
+        enhanced_diff_hl = true, -- See |diffview-config-enhanced_diff_hl|
         git_cmd = { "git" }, -- The git executable followed by default args.
         hg_cmd = { "hg" },  -- The hg executable followed by default args.
         use_icons = true,   -- Requires nvim-web-devicons
@@ -35,7 +35,7 @@ return {
           -- For more info, see |diffview-config-view.x.layout|.
           default = {
             -- Config for changed files, and staged files in diff views.
-            layout = "diff2_horizontal",
+            layout = "diff2_vertical",
             disable_diagnostics = false, -- Temporarily disable diagnostics for diff buffers while in the view.
             winbar_info = false,   -- See |diffview-config-view.x.winbar_info|
           },

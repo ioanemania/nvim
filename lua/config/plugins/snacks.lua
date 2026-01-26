@@ -20,12 +20,6 @@ return {
       -- Zen mode
       map("n", "<space>zz", snacks.zen.zen)
       map("n", "<space>zf", snacks.zen.zoom)
-
-      -- Git & Lazygit
-      map("n", "<space>gg", snacks.lazygit.open)
-      map("n", "<space>gl", snacks.lazygit.log)
-      map("n", "<space>gf", snacks.lazygit.log_file)
-
     end
   }
 }

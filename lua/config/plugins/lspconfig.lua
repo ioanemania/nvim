@@ -1,5 +1,4 @@
-local lsp_servers = { "lua_ls", "svelte", "glslls", "gopls", "rust_analyzer", "ts_ls", "tinymist", "clangd", "zls",
-  "ruff" }
+local lsp_servers = { "lua_ls", "ts_ls", "tinymist", "clangd", "zls" }
 
 return {
   {

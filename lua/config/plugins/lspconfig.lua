@@ -1,4 +1,4 @@
-local lsp_servers = { "lua_ls", "ts_ls", "tinymist", "clangd", "zls" }
+local lsp_servers = { "lua_ls", "ts_ls", "tinymist", "clangd", "zls", "ty" }
 
 return {
   {
@@ -45,21 +45,6 @@ return {
       lspconfig("gdscript", {
         name = "godot",
         cmd = vim.lsp.rpc.connect("127.0.0.1", 6005)
-      })
-
-      lspconfig("pyright", {
-        settings = {
-          pyright = {
-            -- Using Ruff's import organizer
-            disableOrganizeImports = true,
-          },
-          python = {
-            analysis = {
-              -- Ignore all files for analysis to exclusively use Ruff for linting
-              ignore = { '*' },
-            },
-          },
-        },
       })
 
       vim.api.nvim_create_autocmd("LspAttach", {

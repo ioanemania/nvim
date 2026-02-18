@@ -43,7 +43,7 @@ require("lazy").setup({
       priority = 1000,
       config = function()
         require("kanagawa").setup({
-          terminalColors = false,
+          terminalColors = true,
           overrides = function(colors)
             local theme = colors.theme
             return {

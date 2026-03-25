@@ -11,12 +11,15 @@ return {
     config = function()
       local themes = require('telescope.themes')
       local actions = require('telescope.actions')
-      require('telescope').setup {
-        defaults = themes.get_ivy({
 
-          layout_config = {
-            height = 20,
-          },
+      require('telescope').setup {
+        defaults = themes.get_dropdown({
+          border = true,
+          previewer = false,
+
+          -- layout_config = {
+          --   height = 20,
+          -- },
 
           mappings = {
             i = {
@@ -39,13 +42,17 @@ return {
 
       require('telescope').load_extension('fzf')
 
-      vim.keymap.set("n", "<space>ff", require('telescope.builtin').find_files)
+      vim.keymap.set("n", "<space>ff", function() require('telescope.builtin').find_files({previewer = false}) end)
       vim.keymap.set("n", "<space>fg", require('telescope.builtin').live_grep)
-      vim.keymap.set("n", "<space>fh", require('telescope.builtin').help_tags)
-      vim.keymap.set("n", "<space>fb", require('telescope.builtin').buffers)
+      vim.keymap.set("n", "<space>fh", function() require('telescope.builtin').help_tags({previewer = false}) end)
+      vim.keymap.set("n", "<space>fb", function() require('telescope.builtin').buffers({previewer = false}) end)
+      vim.keymap.set("n", "<space>fw", function() require('telescope.builtin').grep_string() end)
+      vim.keymap.set("v", "<space>fw", function() require('telescope.builtin').grep_string() end)
       vim.keymap.set("n", "<space>en", function()
-        require('telescope.builtin').find_files { cwd = vim.fn.stdpath("config") }
+        require('telescope.builtin').find_files { cwd = vim.fn.stdpath("config"), previewer = false }
       end)
+
+      vim.keymap.set("n", "<space>gc", function() require('telescope.builtin').git_branches({previewer = false}) end)
     end,
   },
 }

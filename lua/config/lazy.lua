@@ -44,6 +44,7 @@ require("lazy").setup({
       config = function()
         require("kanagawa").setup({
           terminalColors = true,
+          transparent = true,
           overrides = function(colors)
             local theme = colors.theme
             return {

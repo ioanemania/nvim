@@ -42,9 +42,11 @@ return {
         })
       end
 
-      lspconfig("gdscript", {
-        name = "godot",
-        cmd = vim.lsp.rpc.connect("127.0.0.1", 6005)
+      lspconfig("godotdev", {
+        editor_host = "127.0.0.1", -- Godot editor host
+        editor_port = 6005,        -- Godot LSP port
+        debug_port = 6006,         -- Godot debugger port
+        autostart_editor_server = true,  -- Enable auto start Nvim server
       })
 
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -68,10 +70,10 @@ return {
 
       map("n", "<space>lf", vim.lsp.buf.format)
       map("v", "<space>lf", vim.lsp.buf.format)
-      map("n", "gd", vim.lsp.buf.definition)
+      map("n", "gd", telescope_builtin.lsp_definitions)
       map("n", "gD", vim.lsp.buf.declaration)
       map("n", "<leader>gi", vim.lsp.buf.implementation)
-      map("n", "gr", vim.lsp.buf.references)
+      map("n", "grr", telescope_builtin.lsp_references)
       map("n", "<space>fs", telescope_builtin.lsp_dynamic_workspace_symbols)
       map("n", "<space>fd", telescope_builtin.lsp_document_symbols)
       map("n", "<space>df", vim.diagnostic.open_float)

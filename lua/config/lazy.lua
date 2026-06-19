@@ -26,8 +26,8 @@ require("lazy").setup({
   spec = {
     { import = "config.plugins" },
     {
-      'projekt0n/github-nvim-theme',
-      name = 'github-theme',
+      "projekt0n/github-nvim-theme",
+      name = "github-theme",
       lazy = false,    -- make sure we load this during startup if it is your main colorscheme
       priority = 1000, -- make sure to load this before all the other start plugins
       -- config = function()
@@ -36,55 +36,60 @@ require("lazy").setup({
       -- end,
     },
 
-    { "catppuccin/nvim",        name = "catppuccin", priority = 1000 },
     {
-      "rebelot/kanagawa.nvim",
-      name = "kanagawa",
+      "catppuccin/nvim",
+      name = "catppuccin",
+      lazy = false,
       priority = 1000,
-      config = function()
-        require("kanagawa").setup({
-          terminalColors = true,
-          transparent = true,
-          overrides = function(colors)
-            local theme = colors.theme
-            return {
-              NormalFloat = { bg = "none" },
-              FloatBorder = { bg = "none" },
-              FloatTitle = { bg = "none" },
-
-              -- Save an hlgroup with dark background and dimmed foreground
-              -- so that you can use it where your still want darker windows.
-              -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
-              NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
-
-              -- Popular plugins that open floats will link to NormalFloat by default;
-              -- set their background accordingly if you wish to keep them dark and borderless
-              LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-              MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-            }
-          end,
-          colors = {
-            theme = {
-              all = {
-                ui = {
-                  bg_gutter = "none"
-                }
-              }
-            }
-          }
-        })
-      end
-
+      config = { flavour = "frappe" },
     },
+    -- {
+    --   "rebelot/kanagawa.nvim",
+    --   name = "kanagawa",
+    --   priority = 1000,
+    --   config = function()
+    --     require("kanagawa").setup({
+    --       terminalColors = true,
+    --       transparent = false,
+    --       overrides = function(colors)
+    --         local theme = colors.theme
+    --         return {
+    --           -- NormalFloat = { bg = "none" },
+    --           -- FloatBorder = { bg = "none" },
+    --           -- FloatTitle = { bg = "none" },
+    --
+    --           -- Save an hlgroup with dark background and dimmed foreground
+    --           -- so that you can use it where your still want darker windows.
+    --           -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+    --           NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+    --
+    --           -- Popular plugins that open floats will link to NormalFloat by default;
+    --           -- set their background accordingly if you wish to keep them dark and borderless
+    --           LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+    --           MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+    --         }
+    --       end,
+    --       colors = {
+    --         theme = {
+    --           all = {
+    --             ui = {
+    --               bg_gutter = "none"
+    --             }
+    --           }
+    --         }
+    --       }
+    --     })
+    --   end
+    --
+    -- },
 
     {
       "folke/tokyonight.nvim",
       lazy = false,
       priority = 1000,
-      opts = {},
-      config = function()
-        -- vim.cmd("colorscheme tokyonight")
-      end
+      opts = {
+        style = "storm",
+      },
     },
 
     { "ellisonleao/gruvbox.nvim" },
@@ -104,7 +109,7 @@ require("lazy").setup({
         -- your configuration comes here
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
-      }
+      },
     },
 
     -- {
@@ -127,5 +132,3 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
-
-vim.cmd("colorscheme kanagawa")

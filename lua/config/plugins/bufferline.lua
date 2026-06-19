@@ -7,8 +7,8 @@ return {
       local bufferline = require('bufferline')
       bufferline.setup {
         options = {
-          separator_style = "thin"
-        }
+          separator_style = "slope"
+        },
       }
 
       vim.keymap.set("n", "gb", bufferline.pick)

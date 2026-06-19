@@ -12,6 +12,7 @@ return {
     config = function ()
       vim.keymap.set("n", "<leader>n", ":Neotree action=show position=left toggle<CR>")
       vim.keymap.set("n", "<leader>gs", ":Neotree source=git_status position=float toggle<CR>")
+      vim.keymap.set("n", "<leader>bb", ":Neotree source=buffers position=float toggle<CR>")
     end
   }
 }

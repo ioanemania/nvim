@@ -5,15 +5,15 @@ return {
     "williamboman/mason.nvim",
     config = function()
       require("mason").setup()
-    end
+    end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
-      require("mason-lspconfig").setup {
-        ensure_installed = lsp_servers
-      }
-    end
+      require("mason-lspconfig").setup({
+        ensure_installed = lsp_servers,
+      })
+    end,
   },
   {
     "neovim/nvim-lspconfig",
@@ -29,8 +29,8 @@ return {
           },
         },
       },
-      'saghen/blink.cmp',
-      'nvim-telescope/telescope.nvim',
+      "saghen/blink.cmp",
+      "nvim-telescope/telescope.nvim",
     },
     config = function()
       local lspconfig = vim.lsp.config
@@ -38,30 +38,17 @@ return {
 
       for _, server in ipairs(servers) do
         lspconfig(server, {
-          capabilities = require('blink.cmp').get_lsp_capabilities()
+          capabilities = require("blink.cmp").get_lsp_capabilities(),
         })
+        vim.lsp.enable(server)
       end
 
+      -- GODOT LSP
       lspconfig("godotdev", {
-        editor_host = "127.0.0.1", -- Godot editor host
-        editor_port = 6005,        -- Godot LSP port
-        debug_port = 6006,         -- Godot debugger port
-        autostart_editor_server = true,  -- Enable auto start Nvim server
-      })
-
-      vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup('lsp_attach_disable_ruff_hover', { clear = true }),
-        callback = function(args)
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-          if client == nil then
-            return
-          end
-          if client.name == 'ruff' then
-            -- Disable hover in favor of Pyright
-            client.server_capabilities.hoverProvider = false
-          end
-        end,
-        desc = 'LSP: Disable hover capability from Ruff',
+        editor_host = "127.0.0.1",      -- Godot editor host
+        editor_port = 6005,             -- Godot LSP port
+        debug_port = 6006,              -- Godot debugger port
+        autostart_editor_server = true, -- Enable auto start Nvim server
       })
 
       local telescope_builtin = require("telescope.builtin")

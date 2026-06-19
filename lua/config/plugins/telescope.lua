@@ -17,9 +17,13 @@ return {
           border = true,
           previewer = false,
 
-          -- layout_config = {
-          --   height = 20,
-          -- },
+          layout_config = {
+            height = 0.6,
+            width = 0.6,
+          },
+
+          prompt_prefix = ">> ",
+          selection_caret = ">> ",
 
           mappings = {
             i = {
@@ -42,7 +46,7 @@ return {
 
       require('telescope').load_extension('fzf')
 
-      vim.keymap.set("n", "<space>ff", function() require('telescope.builtin').find_files({previewer = false}) end)
+      vim.keymap.set("n", "<space>ff", function() require('telescope.builtin').find_files({previewer = false, disable_devicons = true}) end)
       vim.keymap.set("n", "<space>fg", require('telescope.builtin').live_grep)
       vim.keymap.set("n", "<space>fh", function() require('telescope.builtin').help_tags({previewer = false}) end)
       vim.keymap.set("n", "<space>fb", function() require('telescope.builtin').buffers({previewer = false}) end)

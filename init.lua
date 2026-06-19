@@ -31,6 +31,8 @@ vim.opt.relativenumber = true
 vim.opt.fillchars = vim.opt.fillchars + 'diff:╱'
 vim.opt.cursorline = true
 vim.opt.winborder = "rounded"
+vim.opt.fillchars:append { eob = " " }
+vim.opt.wrap = false
 
 local map = vim.keymap.set
 map("n", "<space><space>x", "<cmd>source %<cr>")

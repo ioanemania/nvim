@@ -13,6 +13,7 @@ if vim.g.neovide then
   vim.g.neovide_opacity = 0.7
   vim.g.neovide_normal_opacity = 0.7
   vim.g.neovide_window_blurred = true
+  vim.o.guifont = "Iosevka Big 27:h18"
 end
 
 vim.api.nvim_create_autocmd("ColorScheme", {

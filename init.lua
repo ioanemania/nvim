@@ -34,6 +34,11 @@ vim.opt.winborder = "rounded"
 vim.opt.fillchars:append { eob = " " }
 vim.opt.wrap = false
 
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+
 local map = vim.keymap.set
 map("n", "<space><space>x", "<cmd>source %<cr>")
 map("n", "<space>x", ":.lua<cr>")

@@ -1,3 +1,12 @@
+vim.g.diffs = {
+  integrations = {
+    neogit = true,
+    neojj = true,
+    gitsigns = true,
+    telescope = true,
+  },
+}
+
 require("config.lazy")
 
 if vim.g.neovide then

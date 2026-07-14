@@ -10,8 +10,8 @@ vim.g.diffs = {
 require("config.lazy")
 
 if vim.g.neovide then
-  vim.g.neovide_opacity = 0.7
-  vim.g.neovide_normal_opacity = 0.7
+  vim.g.neovide_opacity = 1
+  vim.g.neovide_normal_opacity = 1
   vim.g.neovide_window_blurred = true
   vim.o.guifont = "Iosevka Big 27:h18"
 end
@@ -19,29 +19,28 @@ end
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
     -- Make Telescope transparent
-    vim.api.nvim_set_hl(0, 'TelescopeNormal', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'TelescopeBorder', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'TelescopePromptTitle', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'TelescopePromptBorder', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'TelescopePreviewTitle', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'TelescopeResultsTitle', { bg = 'none' })
-    
+    vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopePromptTitle", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { bg = "none" })
+
     -- Optional: If using other floating windows
-    vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
   end,
 })
-
 
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.fillchars = vim.opt.fillchars + 'diff:╱'
+vim.opt.fillchars = vim.opt.fillchars + "diff:╱"
 vim.opt.cursorline = true
 vim.opt.winborder = "rounded"
-vim.opt.fillchars:append { eob = " " }
+vim.opt.fillchars:append({ eob = " " })
 vim.opt.wrap = false
 
 vim.opt.foldmethod = "expr"
@@ -59,19 +58,30 @@ map("n", "<C-u>", "<C-u>zz")
 
 map("n", "<C-n>", "<cmd>cnext<cr>")
 map("n", "<C-p>", "<cmd>cprev<cr>")
+map("n", "<space>w", "<cmd>w<cr>")
 
 -- Highlight when yanking
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight when yanking text",
+  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
   callback = function()
     vim.highlight.on_yank()
   end,
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'python', 'lua', 'rust' },
-  callback = function() vim.treesitter.start() end,
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "python", "lua", "rust" },
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
+  callback = function()
+    if not vim.bo.readonly and vim.fn.expand("%") ~= "" and vim.bo.buftype == "" then
+      vim.api.nvim_command('silent update')
+    end
+  end,
 })
 
 vim.cmd("colorscheme gruvbox")
